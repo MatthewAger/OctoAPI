@@ -12,8 +12,6 @@ gem 'rails', '~> 7.0.8'
 gem 'active_hash'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise-jwt'
-gem 'dry-struct'
-gem 'dry-types'
 gem 'jbuilder', '~> 2.7'
 gem 'rack-cors'
 
@@ -25,8 +23,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'stripe-ruby-mock',
       require: 'stripe_mock',
-      git:     'https://github.com/stripe-ruby-mock/stripe-ruby-mock.git',
-      branch:  'master'
+      git: 'https://github.com/stripe-ruby-mock/stripe-ruby-mock.git',
+      branch: 'master'
 end
 
 group :development do

@@ -9,8 +9,8 @@ RSpec.describe Octo::BookingsController, type: :request do
   let(:headers) do
     Devise::JWT::TestHelpers.auth_headers(
       {
-        'Accept'            => 'application/json',
-        'Content-Type'      => 'application/json',
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
         'Octo-Capabilities' => 'octo/cardPayments'
       },
       user
@@ -49,7 +49,8 @@ RSpec.describe Octo::BookingsController, type: :request do
     context 'when the user is not authenticated' do
       it 'should not be able to create a booking' do
         expect do
-          post octo_bookings_path, params:, headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }, as: :json
+          post octo_bookings_path, params:,
+                                   headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }, as: :json
         end.to change(Booking, :count).by(0)
         expect(response).to have_http_status(:unauthorized)
         expect(response.content_type).to eq('application/json; charset=utf-8')

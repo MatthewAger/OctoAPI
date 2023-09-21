@@ -12,7 +12,8 @@ RSpec.describe Octo::WebhooksController, type: :request do
     context 'when the payment intent is successful' do
       it 'updates the booking status' do
         event = StripeMock.mock_webhook_event('payment_intent.succeeded', { client_secret: subject.client_secret })
-        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) }, as: :json
+        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) },
+                               as: :json
 
         expect(response).to have_http_status(:ok)
         expect(response.status).to eq(200)
@@ -23,7 +24,8 @@ RSpec.describe Octo::WebhooksController, type: :request do
     context 'when the payment intent fails' do
       it 'does not update the booking status' do
         event = StripeMock.mock_webhook_event('payment_intent.payment_failed', { client_secret: subject.client_secret })
-        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) }, as: :json
+        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) },
+                               as: :json
 
         expect(response).to have_http_status(:ok)
         expect(response.status).to eq(200)
@@ -44,7 +46,8 @@ RSpec.describe Octo::WebhooksController, type: :request do
     context 'when the event contains an invalid client secret' do
       it 'returns a not found' do
         event = StripeMock.mock_webhook_event('payment_intent.payment_failed', { client_secret: 'invalid' })
-        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) }, as: :json
+        post '/octo/webhooks', params: event, headers: { 'Stripe-Signature': stripe_signature(event.to_json) },
+                               as: :json
 
         expect(response).to have_http_status(:not_found)
         expect(response.status).to eq(404)
