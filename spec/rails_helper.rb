@@ -5,6 +5,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'requests/stripe_helpers'
 require 'devise/jwt/test_helpers'
 require 'stripe_mock'
 require 'pry'
@@ -27,9 +28,6 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
     StripeMock.start
   end
 
@@ -43,12 +41,14 @@ RSpec.configure do |config|
     driven_by(:rack_test)
   end
 
-  config.after(:each) do
+  config.after(:suite) do
     StripeMock.stop
   end
 
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+
+  config.include Requests::StripeHelpers, type: :request
 end
 
 Shoulda::Matchers.configure do |config|

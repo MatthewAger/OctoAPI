@@ -10,6 +10,11 @@ class Booking < ApplicationRecord
 
   belongs_to :user
 
+  validates :status, presence: true
   validates :product_id, presence: true
   validates :client_secret, presence: true
+
+  def confirm!
+    update!(status: STATUSES[:CONFIRMED])
+  end
 end

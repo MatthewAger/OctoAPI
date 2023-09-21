@@ -16,8 +16,6 @@ module Octo
         @error ||= Error::CODES[:UNPROCESSABLE_ENTITY]
         render 'shared/messages', status: :bad_request
       end
-
-      # TODO: Handle webhook on confirmation (to be triggered in spec)
     end
 
     private
@@ -29,7 +27,6 @@ module Octo
       @error = Error::CODES[:INVALID_PRODUCT_ID]
     end
 
-    # TODO: Handle request error
     def create_payment_intent!
       @payment_intent ||= Stripe::PaymentIntent.create(
         {

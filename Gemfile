@@ -23,7 +23,10 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'stripe-ruby-mock', '~> 3.1.0.rc3', require: 'stripe_mock'
+  gem 'stripe-ruby-mock',
+      require: 'stripe_mock',
+      git:     'https://github.com/stripe-ruby-mock/stripe-ruby-mock.git',
+      branch:  'master'
 end
 
 group :development do

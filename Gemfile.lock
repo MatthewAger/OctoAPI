@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/stripe-ruby-mock/stripe-ruby-mock.git
+  revision: b8b211c2c697fb94eab1a70a0215282c058e34d6
+  branch: master
+  specs:
+    stripe-ruby-mock (3.1.0.rc3)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (> 5, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -304,10 +314,6 @@ GEM
       activesupport (>= 5.2.0)
     stringio (3.0.8)
     stripe (5.55.0)
-    stripe-ruby-mock (3.1.0.rc3)
-      dante (>= 0.2.0)
-      multi_json (~> 1.0)
-      stripe (> 5, < 6)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -351,7 +357,7 @@ DEPENDENCIES
   rubocop-rails
   shoulda-matchers
   stripe
-  stripe-ruby-mock (~> 3.1.0.rc3)
+  stripe-ruby-mock!
   tzinfo-data
 
 RUBY VERSION
